@@ -1,0 +1,44 @@
+  
+  .input-content {
+    position: relative;
+  }
+  
+  .input-content label,
+  .input-content input {
+    display: block;
+  }
+  
+  .input-content label {
+    color: var(--gray);
+    position: absolute;
+    bottom: 0;
+    left: 16px;
+    background-color: var(--white);
+    font-family: 'Questrial', sans-serif;
+    font-size: 14px;
+    transition: font-size 0.7s ease, bottom 0.3s ease;
+    cursor: text;
+    margin-bottom: 8px;
+  }
+  
+  .input-content input {
+    width: 100%;
+    background: var(--white);
+    border: 1.4px solid var(--gray);
+    height: 40.5px;
+    border-radius: 10px;
+    color: var(--gray);
+    padding-left: 16px;
+    outline: 0;
+    transition: border-color 0.4s ease;
+  }
+  
+  .input-content input:focus {
+    border-color: var(--secondary-second);
+  }
+  
+  .input-content .floating-label {
+    bottom: 20px;
+    font-size: 12px;
+    padding: 0 8px ;
+  }
