@@ -1,26 +1,46 @@
 // Actions taken when clicking the 'input-area'
-var inputAreas = document.querySelectorAll('.input-area');
+const inputs = document.querySelectorAll(".otp-field input");
 
-for(let inputArea of inputAreas) {
-  inputArea.addEventListener('click', function(){
-    inputArea.querySelector('label').classList.add('floating-label');
-    inputArea.querySelector('input').focus();
-  });
+inputs.forEach((input, index) => {
+  input.dataset.index = index;
+  input.addEventListener("paste", handlePaste);
+  input.addEventListener("keyup", autoSubmit);
+});
+
+function handlePaste(e) {
+  const data = e.clipboardData.getData("text");
+  const value = data.split("");
+  if (value.length == inputs.length) {
+    inputs.forEach((input, index) => {
+      input.value = value[index];
+    });
+    submit();
+  }
+}
+function autoSubmit(e) {
+  const input = e.target;
+  let value = input.value.trim();
+  input.value = "";
+  input.value = value ? value[0] : "";
+  let fieldIndex = input.dataset.index;
+  if (value.length > 0 && fieldIndex < inputs.length - 1) {
+    input.nextElementSibling.focus();
+  }
+  if (e.key == "Backspace" && fieldIndex > 0) {
+    input.previousElementSibling.focus();
+  }
+  if (fieldIndex == inputs.length - 1) {
+    submit();
+  }
 }
 
-// Actions taken when focus/blur the input
-var inputs = document.querySelectorAll('input');
-
-for(let input of inputs) {
-  //   focus actions
-  input.addEventListener('focus', function(){
-    input.parentElement.querySelector('label').classList.add('floating-label');
+function submit() {
+  var otp = "";
+  inputs.forEach((input) => {
+    otp += input.value;
+    input.disabled = true;
+    input.classList.add("disabled");
   });
-  //   blur actions
-  input.addEventListener('blur', function(){
-    if(!input.value) {
-      input.parentElement.querySelector('label').classList.remove('floating-label');
-    }
-  });
+  console.log(otp);
+  window.location.href = 'loading.html';
 }
-

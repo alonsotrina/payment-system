@@ -12,6 +12,7 @@
     --text: #52677B;
     --white: #ffffff;
     --white-blue: #F5F9FE;
+    --light-blue: #eff5fb;
     --font: "Nunito Sans", sans-serif;
 }
 
@@ -41,8 +42,13 @@ a {
 #root {
     display: grid;
     grid-template-areas:
-        "payment-col-left"
-        "payment-col-right";
+        "navbar"
+        "header"
+        "main";
+}
+
+.bg-light {
+    background-color: var(--white) !important;
 }
 
 .text-danger {
@@ -65,271 +71,78 @@ a {
     font-size: 14px;
 }
 
-/* Col Left */
-.payment-col-left {
-    grid-area: payment-col-left;
-    background: linear-gradient(142deg, #021C4D 0%, #0541B3 100%);
-    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 93%);
-    height: 326px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.payment-col-left .bank-logo-absolute {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    bottom: 0;
-    transform: translateY(-50%);
-    opacity: 0.1;
-}
-
-.payment-header,
-.payment-content {
-    width: 85%;
-    margin: 0 auto;
-}
-
-.payment-header h2 {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--white);
-}
-
-.payment-header p {
-    font-size: 14px;
-    line-height: 24px;
-    color: var(--white);
-}
-
-.payment-header .payment-summary-header {
-    display: none;
-}
-
 /* Col rigth */
-.payment-col-right {
-    grid-area: payment-col-right;
-    height: calc(100vh - 326px);
-    position: relative;
+.app-header {
+    grid-area: header;
+    color: var(--secondary);
+    height: 58vh;
 }
 
-.payment-col-right-img {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    z-index: -1;
+header h1 {
+    font-size: 40px;
 }
 
-.payment-form {
-    padding-bottom: 140px;
+header h2 {
+    font-size: 22px;
 }
 
-.payment-summary {
-    width: 100%;
-    background-color: var(--white-blue);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    padding: 14px 32px;
+
+header p {
+    font-size: 44px;
 }
 
-.payment-data {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+.app-main {
+    grid-area: main;
+    height: calc(100vh - 227px);
+    height: 42vh;
+    background-color: yellow;
 }
 
-.payment-amount h3 {
-    font-size: 12px;
-    color: var(--gray-secondary);
+
+.border-top-left {
+    border-top-left-radius: 120px;
 }
 
-.payment-amount h4 {
-    font-size: 28px;
-    color: var(--primary);
+.border-bottom-right {
+    border-bottom-right-radius: 80px;
 }
 
-.payment-summary-link a {
-    font-size: 14px;
-    text-decoration: underline;
-    color: var(--gray);
+.bg-az-color {
+    background: #182848;
+}
+
+.bg-az-color-1 {
+    background: #304a87;
+}
+
+.bg-light-blue {
+    background: #eff5fb;
+}
+
+.bg-az {
+    background: linear-gradient(90deg, #304a87 0%, #182848 100%);
 }
 
 /* BUTTONS */
 .btn {
-    border-radius: 20px;
+    border-radius: 12px;
     padding: 10px 24px;
-    font-size: 12px;
     font-weight: bold;
 }
 
-.btn-primary {
-    --bs-btn-bg: var(--secondary-second);
-    --bs-btn-border-color: var(--secondary-second);
+.payment-icon {
+    background-color: #F2F2F2;
+    width: 145px;
+    height: 135px;
+    margin: 0 auto;
+    border-radius: 1rem;
 }
 
-.btn-outline-light {
-    border: 2px solid var(--white);
+.payment-icon img {
+    width: 60%;
 }
 
-/* Credit card */
-.credit-card-container {
-    position: relative;
-    background-image: url("../img/credit_card/CREDIT\ CARD.svg");
-    background-size: cover;
-    padding: 28px;
-    border-radius: 28px;
-    width: 100%;
-    height: 192px;
-    /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); */
-    margin-top: -70px;
+.navbar-brand {
+    font-size: 22px;
 }
-
-.card-number {
-    color: var(--white);
-    font-size: 18px;
-    font-weight: 500;
-    letter-spacing: 2px;
-}
-
-.card-expiry-cvv-data {
-    display: flex;
-    align-items: center;
-}
-
-.card-expiry-cvv-item {
-    display: flex;
-    align-items: center;
-    color: var(--white);
-    margin-right: 20px;
-
-}
-
-.card-expiry-cvv-item h4 {
-    font-size: 8px;
-    font-weight: 300;
-    margin-right: 10px;
-}
-
-.card-expiry-cvv-item h5 {
-    font-size: 18px;
-    font-weight: 500;
-}
-
-.credit-card-logo {
-    width: 24%;
-}
-
-.credit-card-logo img {
-    width: 100%;
-}
-
-.credit-card-logo-container {
-    width: 16%;
-    margin-left: auto;
-}
-
-.credit-card-logo-container img {
-    width: 100%;
-}
-
-/* VISTA TABLET */
-@media (min-width: 576px) {
-    #root {
-        grid-template-areas:
-            "payment-col-right payment-col-left";
-        grid-template-columns: 1fr 50%;
-        grid-template-rows: auto;
-        height: 100vh;
-    }
-
-    .payment-col-left {
-        height: auto;
-        padding-top: 200px;
-        align-items: start;
-        clip-path: polygon(5% 0, 100% 0, 100% 100%, 0 100%);
-        /* clip-path: none; */
-    }
-
-    .payment-col-right {
-        height: auto;
-        padding-top: 190px;
-    }
-
-    /* Credit card */
-    .credit-card-container {
-        margin-top: 0px;
-    }
-
-    /* logo opacity */
-    .payment-col-left .bank-logo-absolute {
-        top: auto;
-        bottom: 130px;
-        transform: none;
-    }
-
-    .payment-header {
-        width: 70%;
-    }
-
-}
-
-/* VISTA DESKTOP */
-@media (min-width: 992px) {
-
-    #root {
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas:
-            "payment-col-right payment-col-left";
-    }
-
-    .payment-col-left,
-    .payment-col-right {
-        padding-top: 120px;
-    }
-
-    .payment-summary {
-        display: none;
-    }
-
-    .payment-content,
-    .payment-header {
-        width: 55%;
-    }
-
-    .payment-header .payment-summary-header {
-        display: none;
-    }
-
-    /* btn pagar */
-    .payment-header .payment-summary-header {
-        display: block;
-    }
-
-    /* logo opacity */
-    .payment-col-left .bank-logo-absolute {
-        bottom: 0;
-    }
-}
-/* VISTA DESKTOP XXL */
-@media (min-width: 1440px) {
-    .payment-content,
-    .payment-header {
-        width: 40%;
-    }
-    .payment-content{
-        width: 40%;
-        margin: 0 140px 0 auto ;
-    }
-
-    .payment-header {
-        width: 40%;
-        margin: 0 auto 0 140px ;
-    }
-    .credit-card-container {
-        height: 230px;
-    }
-   
-  }
